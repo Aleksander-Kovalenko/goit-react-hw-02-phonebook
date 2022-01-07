@@ -17,7 +17,6 @@ export class FilterField extends Component {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           onChange={this.onHandleChange}
-          //   value={value}
         />
       </label>
     );

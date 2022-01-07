@@ -3,7 +3,6 @@ import "./App.css";
 import { Form } from "./Form/Form";
 import { ContactsList } from "./ContactsList/ContactsList";
 import { FilterField } from "./FilterField/FilterField";
-import { TitleSection } from "./TitleSection/TitleSection";
 
 export class App extends Component {
   state = {
@@ -25,12 +24,6 @@ export class App extends Component {
     this.FilterList = [...this.Contacts].filter(({ name }) =>
       name.includes(value)
     );
-
-    // const { value } = e.target;
-    // this.setState({ filter: value });
-    // this.FilterList = [...this.state.contacts].filter(({ name }) =>
-    //   name.includes(value)
-    // );
   };
 
   handleSubmitForm = (data) => {
