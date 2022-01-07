@@ -3,6 +3,7 @@ import "./App.css";
 import { Form } from "./Form/Form";
 import { ContactsList } from "./ContactsList/ContactsList";
 import { FilterField } from "./FilterField/FilterField";
+import { TitleSection } from "./TitleSection/TitleSection";
 
 export class App extends Component {
   state = {
@@ -51,18 +52,19 @@ export class App extends Component {
   };
 
   render() {
-    const { contacts, name, number, filter } = this.state;
+    const { contacts, filter } = this.state;
     return (
       <>
         <Form onSubmit={this.handleSubmitForm} />
-        <h3>Contacts</h3>
-        {contacts.length >= 0 && (
-          <ContactsList
-            contacts={this.FilterList.length > 0 ? this.FilterList : contacts}
-          />
-        )}
 
+        {contacts.length >= 0 && (
+          <ContactsList contacts={contacts} title="All contacts" />
+        )}
         <FilterField onChange={this.handleFilter} value={filter} />
+
+        {filter.length > 0 && (
+          <ContactsList contacts={this.FilterList} title="Filter Contacts" />
+        )}
       </>
     );
   }
