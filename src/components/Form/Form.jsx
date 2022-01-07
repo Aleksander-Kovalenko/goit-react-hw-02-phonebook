@@ -4,15 +4,15 @@ import { ContactsList } from "../ContactsList/ContactsList";
 
 export class Form extends Component {
   state = {
-    contacts: [
-      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-    ],
+    // contacts: [
+    //   { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+    //   { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+    //   { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+    //   { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+    // ],
     name: "",
     number: "",
-    filter: "",
+    // filter: "",
   };
 
   FilterList = [];
@@ -26,13 +26,13 @@ export class Form extends Component {
   //   return this.state.contacts.some((item) => item.name === target);
   // };
 
-  handleFilter = (e) => {
-    const { value } = e.target;
-    this.setState({ filter: value });
-    this.FilterList = [...this.state.contacts].filter(({ name }) =>
-      name.includes(value)
-    );
-  };
+  // handleFilter = (e) => {
+  //   const { value } = e.target;
+  //   this.setState({ filter: value });
+  //   this.FilterList = [...this.state.contacts].filter(({ name }) =>
+  //     name.includes(value)
+  //   );
+  // };
 
   handleSubmit = (e) => {
     const id = nanoid(5);
@@ -97,7 +97,7 @@ export class Form extends Component {
           <button type="submit">Add contact</button>
         </form>
 
-        <label htmlFor="">
+        {/* <label htmlFor="">
           <span className="label-form">Search contact</span>
           <input
             type="text"
@@ -108,7 +108,7 @@ export class Form extends Component {
             onChange={this.handleFilter}
             value={filter}
           />
-        </label>
+        </label> */}
 
         {/* <h3>Contacts</h3> */}
         {/* {contacts.length >= 0 && (

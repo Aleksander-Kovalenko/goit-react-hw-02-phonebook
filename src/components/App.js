@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { Form } from "./Form/Form";
 import { ContactsList } from "./ContactsList/ContactsList";
+import { FilterField } from "./FilterField/FilterField";
 
 export class App extends Component {
   state = {
@@ -17,6 +18,20 @@ export class App extends Component {
   FilterList = [];
   Contacts = [...this.state.contacts];
 
+  handleFilter = (value) => {
+    console.log(value);
+    this.setState({ filter: value });
+    this.FilterList = [...this.Contacts].filter(({ name }) =>
+      name.includes(value)
+    );
+
+    // const { value } = e.target;
+    // this.setState({ filter: value });
+    // this.FilterList = [...this.state.contacts].filter(({ name }) =>
+    //   name.includes(value)
+    // );
+  };
+
   handleSubmitForm = (data) => {
     const checkedName = this.onSearchNameInState(data);
 
@@ -27,7 +42,6 @@ export class App extends Component {
   };
 
   onSearchNameInState = (target) => {
-    console.log();
     return this.state.contacts.some((item) => item.name === target.name);
   };
 
@@ -47,6 +61,8 @@ export class App extends Component {
             contacts={this.FilterList.length > 0 ? this.FilterList : contacts}
           />
         )}
+
+        <FilterField onChange={this.handleFilter} value={filter} />
       </>
     );
   }
