@@ -15,51 +15,59 @@ export class Form extends Component {
     filter: "",
   };
 
-  // ПЕРЕДЕЛАТЬ ТРИ ФУНКЦИИ КАК НА ВИДИО
+  FilterList = [];
 
-  handleFilter = (e) => {
-    const { value } = e.target;
-    const { contacts } = this.state;
-
-    this.setState({ filter: value });
-    const oldArr = [...this.state.contacts];
-
-    const searchNum = oldArr.filter(({ name }) => name.includes(value));
-
-    return searchNum;
-  };
-
-  // ФУНКЦИИ С ВЕРХУ
   handleInputChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
 
+  // onSearchNameInState = (target) => {
+  //   return this.state.contacts.some((item) => item.name === target);
+  // };
+
+  handleFilter = (e) => {
+    const { value } = e.target;
+    this.setState({ filter: value });
+    this.FilterList = [...this.state.contacts].filter(({ name }) =>
+      name.includes(value)
+    );
+  };
+
   handleSubmit = (e) => {
     const id = nanoid(5);
     e.preventDefault();
+    // const checkedName = this.onSearchNameInState(this.state.name);
 
-    const contacts = [...this.state.contacts];
+    // if (checkedName) {
+    //   alert("Sorry, but this Name is in this Phone Book ");
+    //   return this.reset();
+    // }
+
+    // const contacts = [...this.state.contacts];
     const newContact = {
       id: id,
       name: this.state.name,
       number: this.state.number,
     };
-    contacts.push(newContact);
-    this.setState({ contacts: contacts });
+    // contacts.push(newContact);
+    // this.setState({ contacts: contacts });
 
-    this.props.onSubmit(this.state.contacts);
-    this.setState({ name: "", number: "" });
+    this.props.onSubmit(newContact);
+    this.reset();
   };
+
+  reset() {
+    this.setState({ name: "", number: "" });
+  }
 
   render() {
     const { contacts, name, number, filter } = this.state;
     return (
       <>
-        {/* Оптимизировать форму, сделав переиспользываемый компонент label и input 
-        Добавить отдельное событие отправки формы
-        */}
-        <form onSubmit={this.handleSubmit}>
+        {/* Дополнительно: стедлать переиспользываемый компонент label и input*/}
+
+        <form onSubmit={this.handleSubmit} autoComplete="off">
           <label>
             <span className="label-form">Name</span>
             <input
@@ -72,6 +80,7 @@ export class Form extends Component {
               value={name}
             />
           </label>
+
           <label>
             <span className="label-form">Number</span>
             <input
@@ -84,17 +93,12 @@ export class Form extends Component {
               value={number}
             />
           </label>
-          <button
-            type="submit"
-            // onClick={this.handleButtonClick}
-          >
-            Add contact
-          </button>
+
+          <button type="submit">Add contact</button>
         </form>
 
-        <h3>Contacts</h3>
         <label htmlFor="">
-          <span className="label-form">Search Number</span>
+          <span className="label-form">Search contact</span>
           <input
             type="text"
             name="filter"
@@ -106,7 +110,12 @@ export class Form extends Component {
           />
         </label>
 
-        {contacts.length >= 0 && <ContactsList contacts={contacts} />}
+        {/* <h3>Contacts</h3> */}
+        {/* {contacts.length >= 0 && (
+          <ContactsList
+            contacts={this.FilterList.length > 0 ? this.FilterList : contacts}
+          />
+        )} */}
       </>
     );
   }
