@@ -33,7 +33,7 @@ export class Form extends Component {
   }
 
   render() {
-    const { contacts, name, number, filter } = this.state;
+    const { name, number } = this.state;
     return (
       <>
         {/* Дополнительно: стедлать переиспользываемый компонент label и input*/}
