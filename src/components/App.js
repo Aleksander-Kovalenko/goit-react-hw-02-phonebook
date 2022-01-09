@@ -21,7 +21,7 @@ export class App extends Component {
   handleFilter = (value) => {
     this.setState({ filter: value });
     this.FilterList = [...this.Contacts].filter(({ name }) =>
-      name.includes(value)
+      name.toLowerCase().includes(value.toLowerCase())
     );
   };
 
