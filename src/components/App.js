@@ -51,11 +51,13 @@ export class App extends Component {
 
   render() {
     const { contacts, filter } = this.state;
+    const isEmptyFilterList = filter.length > 0;
+    const isEmptyContactList = contacts.length >= 0;
     return (
       <>
         <Form onSubmit={this.handleSubmitForm} />
 
-        {contacts.length >= 0 && (
+        {isEmptyContactList && (
           <ContactsList
             contacts={contacts}
             title="All contacts"
@@ -64,7 +66,7 @@ export class App extends Component {
         )}
         <FilterField onChange={this.handleFilter} value={filter} />
 
-        {filter.length > 0 && (
+        {isEmptyFilterList && (
           <ContactsList contacts={this.FilterList} title="Filter Contacts" />
         )}
       </>

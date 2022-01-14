@@ -6,7 +6,6 @@ export class FilterField extends Component {
   };
 
   render() {
-    const { handleFilter, value } = this.props;
     return (
       <label htmlFor="">
         <span className="label-form">Search contact</span>
